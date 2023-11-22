@@ -1,0 +1,80 @@
+.head {
+  border-radius: 16px 16px 0px 0px;
+  display: flex;
+  height: 12%;
+}
+
+/*사이드 버튼*/
+.sidebtn {
+  color: #ea6b6b;
+  width: 13vw;
+
+  position: absolute;
+  left: 2%;
+  top: 4%;
+}
+
+/*연월정보*/
+.monthYearInfo {
+  padding-top: 4vh;
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+
+  position: absolute;
+  left: 15%;
+}
+
+/*연월정보 글자*/
+.monthYearText {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+}
+
+.yearText {
+  font-size: 14px;
+  color: #868686;
+}
+
+.monthText {
+  font-size: 18px;
+  color: #ea6b6b;
+}
+
+.personIcon {
+  width: 7vw;
+  height: 7vh;
+  position: absolute;
+  right: 5%;
+  top: 4%;
+}
+
+/*임시*/
+.moveMonthBtn {
+  position: absolute;
+  left: 50%;
+  top: 3%;
+}
+
+.backToday {
+  width: 9vw;
+  height: 9vw;
+  position: absolute;
+  right: 15%;
+  top: 3.5%;
+  border-radius: 6px;
+
+  background-color: #ffffff;
+  color: #ea6b6b;
+  box-shadow: 0 0 0 2px #ea6b6b inset;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.backToday:active {
+  color: #ffffff;
+  background-color: #ea6b6b;
+}

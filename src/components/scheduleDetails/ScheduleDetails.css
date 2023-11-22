@@ -1,0 +1,61 @@
+.detail-body {
+  display: flex;
+  justify-content: center;
+}
+.details-container {
+  position: absolute;
+  top: 51vh;
+}
+.detail {
+  width: 90vw;
+  height: 11vh;
+  background: #eeeeee;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  margin-bottom: 1vh;
+}
+
+.sign {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  position: relative;
+  top: 12%;
+}
+.sign.green {
+  box-shadow: 0 0 0 3px #00b383 inset;
+}
+.sign.blue {
+  box-shadow: 0 0 0 3px #6b96ea inset;
+}
+.sign.pink {
+  box-shadow: 0 0 0 3px #ea6b6b inset;
+}
+.sign.orange {
+  box-shadow: 0 0 0 3px orange inset;
+}
+
+.schedule-name {
+  font-weight: 500;
+  position: relative;
+  left: -4vw;
+  top: 1.5vh; /*그냥 가운데로 맞춰버릴걸..*/
+}
+.schedule-name.green {
+  color: #00b383;
+}
+.schedule-name.blue {
+  color: #6b96ea;
+}
+.schedule-name.pink {
+  color: #ea6b6b;
+}
+.schedule-name.orange {
+  color: orange;
+}
+
+.detail-like {
+  position: relative;
+  left: 85vw;
+  top: -5vh;
+}

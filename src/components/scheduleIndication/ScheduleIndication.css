@@ -1,0 +1,44 @@
+.small_indication_outLine {
+  padding-top: 12%;
+  padding-left: 5%;
+  display: flex;
+}
+.big_indication_outLine {
+  padding-top: 12%;
+}
+
+.big_indication {
+  font-weight: 500;
+  color: #ffffff;
+}
+.small_indication {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+}
+
+/*현타온다 이렇게 복붙하는 게 맞나...*/
+.green.big_indication {
+  background-color: #00b383;
+}
+.blue.big_indication {
+  background-color: #6b96ea;
+}
+.pink.big_indication {
+  background-color: #ea6b6b;
+}
+.orange.big_indication {
+  background-color: orange;
+}
+.green.small_indication {
+  box-shadow: 0 0 0 2px #00b383 inset;
+}
+.blue.small_indication {
+  box-shadow: 0 0 0 2px #6b96ea inset;
+}
+.pink.small_indication {
+  box-shadow: 0 0 0 2px #ea6b6b inset;
+}
+.orange.small_indication {
+  box-shadow: 0 0 0 2px orange inset;
+}

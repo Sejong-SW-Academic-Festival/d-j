@@ -1,0 +1,28 @@
+.days-parent {
+  display: flex;
+  justify-content: center;
+}
+
+.days {
+  width: 90vw;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 15vh;
+
+  font-weight: 600;
+  font-size: 13px;
+  color: #69695d;
+}
+
+.col {
+  width: 13.33vw;
+}
+
+.Sun {
+  color: #ea6b6b;
+}
+
+.Sat {
+  color: #6b96ea;
+}

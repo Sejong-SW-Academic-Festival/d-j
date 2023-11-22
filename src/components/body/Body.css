@@ -1,0 +1,101 @@
+.body {
+  display: flex;
+  justify-content: center;
+}
+.jiho-content {
+  width: 90vw;
+  border-radius: 16px;
+  background: #eeeeee;
+  position: absolute;
+  top: 18vh;
+  padding-top: 2vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  height: fit-content;
+}
+.small,
+.big {
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+.content.small {
+  height: 30vh;
+}
+.content.big {
+  height: 75vh;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.cell {
+  width: 13.33vw;
+}
+.cell.small {
+  height: 6vh;
+}
+.cell.big {
+  height: 15vh;
+}
+.long.big {
+  height: 12.5vh; /*수정된 곳*/
+}
+.long.small {
+  height: 5vh;
+}
+
+.cell {
+  font-weight: 600;
+  font-size: 13px;
+  color: #69695d;
+}
+
+.invalid {
+  color: #b5b5b5;
+}
+
+span {
+  padding: 0% 6% 4% 6%;
+  position: relative;
+  top: 1%;
+  left: 4%;
+}
+
+.today > span {
+  color: #ffffff;
+  background-color: #ea6b6b;
+  border-radius: 100%;
+}
+
+.selected {
+  border-radius: 15%;
+  box-shadow: 0 0 0 1px #ea6b6b inset;
+
+  animation: fillHeart 1s ease-in-out forwards;
+}
+
+.selected .today > span.invalid {
+  background-color: #f8c3c3;
+}
+
+@keyframes fillHeart {
+  0% {
+    transform: rotate(0deg) scale(1);
+    background: #eeeeee;
+  }
+
+  70% {
+    transform: rotate(360deg) scale(1);
+    background: #eeeeee;
+  }
+
+  80% {
+    transform: rotate(360deg) scale(1.2);
+    background: #eeeeee;
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+    background-color: red;
+  }
+}

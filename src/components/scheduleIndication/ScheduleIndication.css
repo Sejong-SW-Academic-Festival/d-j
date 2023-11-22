@@ -17,6 +17,18 @@
   border-radius: 100%;
 }
 
+.big_plus_cnt {
+  font-size: 10px;
+}
+
+.small_plus_cnt {
+  width: 8px;
+  height: 8px;
+  font-size: 8px;
+  position: relative;
+  top: -2px;
+}
+
 /*현타온다 이렇게 복붙하는 게 맞나...*/
 .green.big_indication {
   background-color: #00b383;
@@ -28,7 +40,10 @@
   background-color: #ea6b6b;
 }
 .orange.big_indication {
-  background-color: orange;
+  background-color: #ea916b;
+}
+.mint.big_indication {
+  background-color: #01c7d3;
 }
 .green.small_indication {
   box-shadow: 0 0 0 2px #00b383 inset;
@@ -40,5 +55,8 @@
   box-shadow: 0 0 0 2px #ea6b6b inset;
 }
 .orange.small_indication {
-  box-shadow: 0 0 0 2px orange inset;
+  box-shadow: 0 0 0 2px #ea916b inset;
+}
+.mint.small_indication {
+  box-shadow: 0 0 0 2px #01c7d3 inset;
 }

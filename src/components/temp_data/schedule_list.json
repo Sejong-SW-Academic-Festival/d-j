@@ -1,0 +1,79 @@
+{
+  "isSuccess": true,
+  "code": 200,
+  "message": "요청에 성공하였습니다.",
+  "result": [
+    {
+      "id": 3,
+      "name": "test3",
+      "description": "test3",
+      "category_id": "학사일정",
+      "startDate": "2023-09-10T00:00:00",
+      "endDate": "2023-10-20T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 2,
+      "name": "test2",
+      "description": "test2",
+      "category_id": "단과대학",
+      "startDate": "2023-11-11T00:00:00",
+      "endDate": "2023-11-25T00:00:00",
+      "enrolledUserEmail": []
+    },
+    {
+      "id": 1,
+      "name": "test1",
+      "description": "test1",
+      "category_id": "두드림",
+      "startDate": "2023-11-21T00:00:00",
+      "endDate": "2023-11-25T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 4,
+      "name": "test4",
+      "description": "test4",
+      "category_id": "동아리",
+      "startDate": "2023-12-10T00:00:00",
+      "endDate": "2023-12-20T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 5,
+      "name": "test5",
+      "description": "test5",
+      "category_id": "등록일정",
+      "startDate": "2023-11-21T00:00:00",
+      "endDate": "2023-11-25T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 6,
+      "name": "test6",
+      "description": "test6",
+      "category_id": "학사일정",
+      "startDate": "2023-11-21T00:00:00",
+      "endDate": "2023-11-25T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 7,
+      "name": "test7",
+      "description": "test7",
+      "category_id": "단과대학",
+      "startDate": "2023-11-21T00:00:00",
+      "endDate": "2023-11-23T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 8,
+      "name": "test8",
+      "description": "test8",
+      "category_id": "두드림",
+      "startDate": "2023-11-21T00:00:00",
+      "endDate": "2023-11-22T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    }
+  ]
+}

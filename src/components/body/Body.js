@@ -13,6 +13,7 @@ import ScheduleIndication from "../scheduleIndication/ScheduleIndication";
 import ScheduleDetails from "../scheduleDetails/ScheduleDetails";
 import axiosInstance from "../../axiosInstance";
 import "./Body.css";
+import temp_data from "../temp_data/schedule_list.json";
 
 function Body({
   currentMonth,
@@ -47,32 +48,40 @@ function Body({
   const setSchedulesTemp = (e) => {
     setSchedules(e);
   };
-  // const getSchedules = async () => {
-  //   const tempToken =
-  //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTUzNDc1Mn0.MWRNWdk9m1KDuYvuzK3tXoOV9xtLFKf9WUMAIV0UYK0";
-  //   const res = await axiosInstance.get("/schedule/get-list", {
-  //     headers: { Authorization: tempToken },
-  //   });
-  //   const myResult = res.data.result;
-  //   const thisMonthSchedule = myResult.filter(
-  //     (schedule) =>
-  //       !(
-  //         isBefore(new Date(schedule.endDate), startDateOfCal) ||
-  //         isAfter(new Date(schedule.startDate), endDateOfCal)
-  //       )
-  //   );
-  //   setSchedulesTemp(thisMonthSchedule);
-  // };
+  const getSchedules = async () => {
+    // const tempToken =
+    //   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTUzNDc1Mn0.MWRNWdk9m1KDuYvuzK3tXoOV9xtLFKf9WUMAIV0UYK0";
+    // const res = await axiosInstance.get("/schedule/get-list", {
+    //   headers: { Authorization: tempToken },
+    // });
+    // const myResult = res.data.result;
+
+    //임시데이터
+    const myResult = temp_data.result;
+    const thisMonthSchedule = myResult.filter(
+      (schedule) =>
+        !(
+          isBefore(new Date(schedule.endDate), startDateOfCal) ||
+          isAfter(new Date(schedule.startDate), endDateOfCal)
+        )
+    );
+    setSchedulesTemp(thisMonthSchedule);
+  };
 
   useEffect(() => {
-    //getSchedules(); //일단은 통신 막아두기
+    getSchedules();
     console.log("끼얏호");
     if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);
     else onSetSelectedDate(monthStart);
   }, [currentMonth]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
 
-  const colorList = ["pink", "blue", "green", "orange"]; //추후 카테고리별 컬러로 바꿔야함
-  //왠지 인덱스 기준으로 컬러를 정해서 나중에 오류 왕창 날 것 같음
+  const categoryColor = {
+    학사일정: "green",
+    단과대학: "blue",
+    두드림: "pink",
+    동아리: "mint",
+    등록일정: "orange",
+  };
 
   while (day <= endDateOfCal) {
     for (let i = 0; i < 7; i++) {
@@ -108,7 +117,7 @@ function Body({
             monthlySchedules={schedules}
             todayDate={day}
             isBigCal={isBigCal}
-            colors={colorList}
+            colors={categoryColor}
           />
         </div>
       );
@@ -174,7 +183,7 @@ function Body({
         <ScheduleDetails
           monthlySchedules={schedules}
           selDate={selectedDate}
-          colors={colorList}
+          colors={categoryColor}
         />
       )}
     </div>

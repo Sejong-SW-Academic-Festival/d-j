@@ -96,6 +96,6 @@ span {
 
   100% {
     transform: rotate(360deg) scale(1);
-    background-color: red;
+    background-color: #eb5050;
   }
 }

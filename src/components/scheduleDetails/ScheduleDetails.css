@@ -5,13 +5,15 @@
 .details-container {
   position: absolute;
   top: 51vh;
+  width: 92vw;
+  height: 48vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .detail {
-  width: 90vw;
+  width: 92vw;
   height: 11vh;
   background: #eeeeee;
-  padding-left: 1vh;
-  padding-right: 1vh;
   margin-bottom: 1vh;
 }
 
@@ -32,7 +34,10 @@
   box-shadow: 0 0 0 3px #ea6b6b inset;
 }
 .sign.orange {
-  box-shadow: 0 0 0 3px orange inset;
+  box-shadow: 0 0 0 3px #ea916b inset;
+}
+.sign.mint {
+  box-shadow: 0 0 0 3px #01c7d3 inset;
 }
 
 .schedule-name {
@@ -51,7 +56,10 @@
   color: #ea6b6b;
 }
 .schedule-name.orange {
-  color: orange;
+  color: #ea916b;
+}
+.schedule-name.mint {
+  color: #01c7d3;
 }
 
 .detail-like {

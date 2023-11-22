@@ -10,8 +10,20 @@
   height: 100vh;
   width: 80vw;
   background-color: #ffffff;
-  border-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
   position: relative;
   opacity: 1;
   z-index: 3;
+  animation: main 0.8s cubic-bezier(0, 0.55, 0.45, 1);
+  transform-origin: 100% 100%;
+}
+
+@keyframes main {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 80vw;
+  }
 }

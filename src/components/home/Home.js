@@ -4,7 +4,7 @@ import Days from "../days/Days";
 import Body from "../body/Body";
 import Menu from "../menu/Menu";
 import React, { useState } from "react";
-import { format, addMonths, subMonths } from "date-fns";
+import { format, addMonths, subMonths, isSameMonth } from "date-fns";
 
 function Home() {
   //날짜
@@ -33,6 +33,9 @@ function Home() {
   //해당 날짜 클릭 시
   const onDateClick = (day) => {
     setSelectedDate(day);
+    if (!isSameMonth(day, currentMonth)) {
+      setCurrentMonth(day);
+    }
     toSmallCalendar();
   };
 

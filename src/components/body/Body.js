@@ -71,8 +71,10 @@ function Body({
   useEffect(() => {
     getSchedules();
     console.log("끼얏호");
-    if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);
-    else onSetSelectedDate(monthStart);
+    if (!isSameMonth(currentMonth, selectedDate)) {
+      if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);
+      else onSetSelectedDate(monthStart);
+    }
   }, [currentMonth]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
 
   const categoryColor = {

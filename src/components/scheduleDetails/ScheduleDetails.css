@@ -40,6 +40,34 @@
   box-shadow: 0 0 0 3px #01c7d3 inset;
 }
 
+.heart-shape.unfilled {
+  stroke: #8f9bb3;
+  fill: none;
+}
+.heart-shape.filled {
+  stroke: red;
+  fill: red;
+  animation: fillHeart 1s ease-in-out forwards;
+}
+
+@keyframes fillHeart {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  70% {
+    transform: rotate(360deg) scale(1);
+  }
+
+  80% {
+    transform: rotate(360deg) scale(1.2);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
 .schedule-name {
   font-weight: 500;
   position: relative;

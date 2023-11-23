@@ -71,31 +71,9 @@ span {
   border-radius: 15%;
   box-shadow: 0 0 0 1px #ea6b6b inset;
 
-  animation: fillHeart 1s ease-in-out forwards;
+  /* animation: fillHeart 1s ease-in-out forwards; */
 }
 
 .selected .today > span.invalid {
   background-color: #f8c3c3;
-}
-
-@keyframes fillHeart {
-  0% {
-    transform: rotate(0deg) scale(1);
-    background: #eeeeee;
-  }
-
-  70% {
-    transform: rotate(360deg) scale(1);
-    background: #eeeeee;
-  }
-
-  80% {
-    transform: rotate(360deg) scale(1.2);
-    background: #eeeeee;
-  }
-
-  100% {
-    transform: rotate(360deg) scale(1);
-    background-color: #eb5050;
-  }
 }

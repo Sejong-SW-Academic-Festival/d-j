@@ -8,8 +8,12 @@
 }
 
 .big_indication {
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 12px;
   color: #ffffff;
+  width: 12.6vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .small_indication {
   width: 8px;
@@ -45,6 +49,7 @@
 .mint.big_indication {
   background-color: #01c7d3;
 }
+
 .green.small_indication {
   box-shadow: 0 0 0 2px #00b383 inset;
 }
@@ -59,4 +64,52 @@
 }
 .mint.small_indication {
   box-shadow: 0 0 0 2px #01c7d3 inset;
+}
+
+/*미쳤나?*/
+.green.big_indication.blur {
+  background-color: #00b38340;
+}
+.blue.big_indication.blur {
+  background-color: #6b95ea3b;
+}
+.pink.big_indication.blur {
+  background-color: #ea6b6b3e;
+}
+.orange.big_indication.blur {
+  background-color: #ea916b41;
+}
+.mint.big_indication.blur {
+  background-color: #01c8d335;
+}
+
+.green.small_indication {
+  box-shadow: 0 0 0 2px #00b383 inset;
+}
+.blue.small_indication {
+  box-shadow: 0 0 0 2px #6b96ea inset;
+}
+.pink.small_indication {
+  box-shadow: 0 0 0 2px #ea6b6b inset;
+}
+.orange.small_indication {
+  box-shadow: 0 0 0 2px #ea916b inset;
+}
+.mint.small_indication {
+  box-shadow: 0 0 0 2px #01c7d3 inset;
+}
+.green.small_indication.blur {
+  box-shadow: 0 0 0 2px #00b38340 inset;
+}
+.blue.small_indication.blur {
+  box-shadow: 0 0 0 2px #6b95ea3b inset;
+}
+.pink.small_indication.blur {
+  box-shadow: 0 0 0 2px #ea6b6b3e inset;
+}
+.orange.small_indication.blur {
+  box-shadow: 0 0 0 2px #ea916b41 inset;
+}
+.mint.small_indication.blur {
+  box-shadow: 0 0 0 2px #01c8d335 inset;
 }

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { isAfter, isBefore } from "date-fns";
 import "./ScheduleDetails.css";
 function ScheduleDetails({ monthlySchedules, selDate, colors }) {
   const toShowSchedules = monthlySchedules.filter(
     (e) =>
-      new Date(e.startDate).getDate() <= selDate.getDate() &&
-      new Date(e.endDate).getDate() >= selDate.getDate()
+      !(
+        isBefore(new Date(e.endDate), selDate) ||
+        isAfter(new Date(e.startDate), selDate)
+      )
   );
 
   // //관심목록 받아오게 되면 여기 수정해줄것

@@ -1,11 +1,19 @@
+import { isAfter, isBefore } from "date-fns";
 import "./ScheduleIndication.css";
-function ScheduleIndication({ monthlySchedules, todayDate, isBigCal, colors }) {
+function ScheduleIndication({
+  monthlySchedules,
+  todayDate,
+  isBigCal,
+  colors,
+  isSameMonth,
+}) {
   const toShowSchedules = monthlySchedules.filter(
     (e) =>
-      new Date(e.startDate).getDate() <= todayDate.getDate() &&
-      new Date(e.endDate).getDate() >= todayDate.getDate()
+      !(
+        isBefore(new Date(e.endDate), todayDate) ||
+        isAfter(new Date(e.startDate), todayDate)
+      )
   );
-
   function canShowSchedules(index) {
     if (index <= 2) return true;
     if (index == 3) return toShowSchedules.length <= 4;
@@ -23,7 +31,9 @@ function ScheduleIndication({ monthlySchedules, todayDate, isBigCal, colors }) {
           canShowSchedules(index) ? (
             <div
               key={e.id}
-              className={`big_indication ${colors[e.category_id]}`}
+              className={`big_indication ${colors[e.category_id]} ${
+                isSameMonth ? "" : "blur"
+              }`}
             >
               {e.name}
             </div>
@@ -35,7 +45,9 @@ function ScheduleIndication({ monthlySchedules, todayDate, isBigCal, colors }) {
         ) : canShowSchedules(index) ? (
           <div
             key={e.id}
-            className={`small_indication ${colors[e.category_id]}`}
+            className={`small_indication ${colors[e.category_id]} ${
+              isSameMonth ? "" : "blur"
+            }`}
           ></div>
         ) : index == 3 ? (
           <div className="small_plus_cnt">

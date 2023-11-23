@@ -70,7 +70,6 @@ span {
 .selected {
   border-radius: 15%;
   box-shadow: 0 0 0 1px #ea6b6b inset;
-
   /* animation: fillHeart 1s ease-in-out forwards; */
 }
 

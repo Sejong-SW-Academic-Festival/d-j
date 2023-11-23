@@ -74,6 +74,42 @@
       "startDate": "2023-11-21T00:00:00",
       "endDate": "2023-11-22T00:00:00",
       "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 9,
+      "name": "test9",
+      "description": "test9",
+      "category_id": "등록일정",
+      "startDate": "2023-11-26T00:00:00",
+      "endDate": "2023-12-02T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 10,
+      "name": "test10",
+      "description": "test10",
+      "category_id": "두드림",
+      "startDate": "2023-11-26T00:00:00",
+      "endDate": "2023-12-02T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 11,
+      "name": "test11",
+      "description": "test11",
+      "category_id": "단과대학",
+      "startDate": "2023-11-26T00:00:00",
+      "endDate": "2023-12-02T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
+    },
+    {
+      "id": 13,
+      "name": "toomuchlonglonglonglongname!!",
+      "description": "test13",
+      "category_id": "학사일정",
+      "startDate": "2023-10-29T00:00:00",
+      "endDate": "2023-11-04T00:00:00",
+      "enrolledUserEmail": ["bokbok@gmail.com"]
     }
   ]
 }

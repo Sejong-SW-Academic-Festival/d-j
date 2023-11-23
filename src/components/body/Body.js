@@ -45,7 +45,7 @@ function Body({
   //월별 스케줄 셋팅
   //이걸 지금 업데이트 될 때마다 호출하는데 너무 비효율적이지 않나?? 월 바뀔 때만 호출할 수는 없나??
   const [schedules, setSchedules] = useState([]);
-  const setSchedulesTemp = (e) => {
+  const addSchedules = (e) => {
     setSchedules(e);
   };
   const getSchedules = async () => {
@@ -65,7 +65,7 @@ function Body({
           isAfter(new Date(schedule.startDate), endDateOfCal)
         )
     );
-    setSchedulesTemp(thisMonthSchedule);
+    addSchedules(thisMonthSchedule);
   };
 
   useEffect(() => {
@@ -118,6 +118,7 @@ function Body({
             todayDate={day}
             isBigCal={isBigCal}
             colors={categoryColor}
+            isSameMonth={isSameMonth(day, monthStart)}
           />
         </div>
       );

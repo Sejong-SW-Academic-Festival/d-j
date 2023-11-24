@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import axiosInstance from "../../axiosInstance";
+import { useNavigate } from "react-router-dom";
 
   /* test 아이디
     hailcryptic@gmail.com
@@ -20,6 +21,7 @@ export default function Login() {
   const [failpw, setFailpw] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const navigate = useNavigate();
   useEffect(() => {
     // 페이지가 로드될 때 localStorage에서 토큰을 확인하여 로그인 상태를 설정
     const token = localStorage.getItem("token");
@@ -56,6 +58,7 @@ export default function Login() {
           const token = response.headers.authorization
           localStorage.setItem("Authorization", token);
           setIsLoggedIn(true);
+          navigate('/');
         }
       })
       .catch((error) => {

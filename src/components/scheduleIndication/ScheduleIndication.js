@@ -31,7 +31,7 @@ function ScheduleIndication({
           canShowSchedules(index) ? (
             <div
               key={e.id}
-              className={`big_indication ${colors[e.category_id]} ${
+              className={`big_indication ${colors[e.categoryType]} ${
                 isSameMonth ? "" : "blur"
               }`}
             >
@@ -45,7 +45,7 @@ function ScheduleIndication({
         ) : canShowSchedules(index) ? (
           <div
             key={e.id}
-            className={`small_indication ${colors[e.category_id]} ${
+            className={`small_indication ${colors[e.categoryType]} ${
               isSameMonth ? "" : "blur"
             }`}
           ></div>

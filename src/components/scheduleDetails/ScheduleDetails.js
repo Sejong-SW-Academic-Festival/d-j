@@ -28,8 +28,8 @@ function ScheduleDetails({ monthlySchedules, selDate, colors }) {
       <div className="details-container">
         {toShowSchedules.map((e) => (
           <div key={e.id} className={"detail"}>
-            <div className={`sign ${colors[e.category_id]}`}></div>
-            <span className={`schedule-name ${colors[e.category_id]}`}>
+            <div className={`sign ${colors[e.categoryType]}`}></div>
+            <span className={`schedule-name ${colors[e.categoryType]}`}>
               {e.name}
             </span>
             <div

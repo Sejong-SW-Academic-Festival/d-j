@@ -43,21 +43,20 @@ function Body({
   const [dragStartXCoord, setXCoord] = useState(1);
 
   //월별 스케줄 셋팅
-  //이걸 지금 업데이트 될 때마다 호출하는데 너무 비효율적이지 않나?? 월 바뀔 때만 호출할 수는 없나??
   const [schedules, setSchedules] = useState([]);
   const addSchedules = (e) => {
     setSchedules(e);
   };
   const getSchedules = async () => {
-    // const tempToken =
-    //   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTUzNDc1Mn0.MWRNWdk9m1KDuYvuzK3tXoOV9xtLFKf9WUMAIV0UYK0";
-    // const res = await axiosInstance.get("/schedule/get-list", {
-    //   headers: { Authorization: tempToken },
-    // });
-    // const myResult = res.data.result;
-
+    const tempToken =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQxNTE0MX0.8DeZiIwWj1kkdvtpdzpwa0OxubRSQxetr5MhGgoVWb8";
+    const res = await axiosInstance.get("/schedule/get-list", {
+      headers: { Authorization: tempToken },
+    });
+    const myResult = res.data.result;
+    console.log("myResult:", myResult);
     //임시데이터
-    const myResult = temp_data.result;
+    // const myResult = temp_data.result;
     const thisMonthSchedule = myResult.filter(
       (schedule) =>
         !(
@@ -78,11 +77,12 @@ function Body({
   }, [currentMonth]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
 
   const categoryColor = {
-    학사일정: "green",
-    단과대학: "blue",
-    두드림: "pink",
-    동아리: "mint",
-    등록일정: "orange",
+    ACADEMIC: "green",
+    COLLEGE: "blue",
+    DEPARTMENT: "blue",
+    DO_DREAM: "pink",
+    CLUB: "mint",
+    PERSONAL: "orange",
   };
 
   while (day <= endDateOfCal) {

@@ -91,7 +91,6 @@ function Menu({
     </svg>
   );
 
-  console.log(menuCategories);
   const initDownBar = menuCategories.map((e) => ({
     ...e,
     isActive: false,

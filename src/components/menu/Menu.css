@@ -9,8 +9,9 @@
 .menuBoard {
   padding-top: 4vw;
   padding-bottom: 4vw;
-  height: 100vh;
+  height: 95vh;
   width: 80vw;
+  overflow-y: auto;
   background-color: #ffffff;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;

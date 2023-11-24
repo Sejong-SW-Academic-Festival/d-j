@@ -68,6 +68,7 @@ function Body({
         )
     );
 
+    console.log(defaultCategories)
     //체크된 카테고리 관련 일정으로 거르기
     const toShowcHeartSchedule = defaultCategories
       .at(4)
@@ -95,6 +96,11 @@ function Body({
 
   useEffect(() => {
     getSchedules();
+
+    if(schedules.length === 0)
+      return;
+    console.log(schedules);
+
     console.log("끼얏호");
     if (!isSameMonth(currentMonth, selectedDate)) {
       if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);

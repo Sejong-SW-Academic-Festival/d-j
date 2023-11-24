@@ -9,6 +9,7 @@ import axiosInstance from "../../axiosInstance";
 
 function Home() {
   //날짜
+  const [loading, setloading] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -104,12 +105,16 @@ function Home() {
     });
     addCategories(categoryResult.data.result);
     initUserInfo(userInfoResult.data.result);
+    setloading(false);
   };
 
   useEffect(() => {
     getMenuSources();
   }, []);
 
+  if(loading )
+  return (
+<div> </div>)
   return (
     <div className={styles.body}>
       {showMenu ? (

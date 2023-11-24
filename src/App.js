@@ -13,6 +13,7 @@ import Mypage from "./doyun/MyPage/Mypage";
 import ModifyInfo from "./doyun/ModifyInfo/ModifyInfo";
 
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import ModifyLike from "./doyun/ModifyLike/ModifyLike";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/mypage" exact Component={Mypage} />
           <Route path="/login" exact Component={Login} />
           <Route path="/modifyInfo" exact Component={ModifyInfo} />
+          <Route path="/modifyLike" exact Component={ModifyLike} />
         </Routes>
       </Suspense>
     </BrowserRouter>

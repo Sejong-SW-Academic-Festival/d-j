@@ -3,28 +3,55 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Mypage.module.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ko } from 'date-fns/esm/locale';
 
 export default function Mypage() {
   const history = useNavigate();
   const [userData, setUserData] = useState({});
   const [modal, setModal] = useState(false);
-  const [schedulename, setSchedulname] = useState("");
-  const [scheduleplace, setSchedulplace] = useState("");
+  const [schedulename, setSchedulename] = useState("");
+  const [scheduleplace, setScheduleplace] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  
+  const filterPassedDate = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+  
+    // currentDate가 selectedDate보다 이후 또는 같은 경우 true를 반환하여 선택 가능하도록 설정
+    return currentDate.getTime() < selectedDate.getTime();
+  };
 
-  const showModal = () => {
+  const handleChangeStartDate = (date) => {
+    setStartDate(date);
+    // 여기에 시작 날짜가 변경될 때 수행할 작업 추가
+  };
+
+  const handleChangeEndDate = (date) => {
+    setEndDate(date);
+    // 여기에 종료 날짜가 변경될 때 수행할 작업 추가
+  };
+
+    const showModal = () => {
     setModal(true);
   };
 
   const hideModal = () => {
     setModal(false);
+    setStartDate(null);
+    setEndDate(null);
+    setSchedulename("");
+    setScheduleplace("");
   };
 
-  const handleSchedulname = (e) => {
-    setSchedulname(e.target.value);
+  const handleSchedulename = (e) => {
+    setSchedulename(e.target.value);
   };
 
-  const handleSchedulplace = (e) => {
-    setSchedulplace(e.target.value);
+  const handleScheduleplace = (e) => {
+    setScheduleplace(e.target.value);
   };
 
   const axiosInstance = axios.create({
@@ -34,8 +61,40 @@ export default function Mypage() {
       "Content-Type": "application/json",
       Authorization: localStorage.getItem("Authorization") || "",
     },
-    baseURL: "http://43.202.250.219:8080",
+    baseURL: "http://3.35.183.26:8080",
   });
+
+  const handleSaveSchedule = () => {
+    // Check if all required fields are filled
+    if (!schedulename || !scheduleplace || !startDate || !endDate) {
+      alert("모든 필수 항목을 입력하세요.");
+      return;
+    }
+  
+    // Prepare data for the API request
+    const scheduleData = {
+      name: schedulename,
+      place: scheduleplace,
+      start_date: startDate,
+      end_date: endDate,
+      // Add any other necessary data
+    };
+  
+    // Make an API request to save the schedule
+    axiosInstance
+      .put("/user/enroll-schedule/{scheduleName}", scheduleData)
+      .then((response) => {
+        // Handle the response from the server
+        console.log("Schedule saved successfully:", response.data);
+  
+        // Close the modal and reset the form
+        hideModal();
+      })
+      .catch((error) => {
+        console.error("Error saving schedule:", error);
+        // Handle the error, e.g., show an error message
+      });
+    };
 
   useEffect(() => {
     // 사용자 정보를 가져오는 API 호출
@@ -50,17 +109,16 @@ export default function Mypage() {
         })
         .then((response) => {
           // API에서 받아온 사용자 정보를 상태 변수에 저장
-          setUserData(response.data);
+          setUserData(response.data.result);
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
         });
     }
-  }, [axiosInstance]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    history.push("/login");
   };
 
   return (
@@ -68,12 +126,11 @@ export default function Mypage() {
       <div className={styles.profileimg}>
         <img className={styles.profile} src="img/profile.png" alt="Profile" />
       </div>
-      <p className={styles.username}>{userData.username}</p>
+      <p className={styles.username}>{userData.name}</p>
       <p className={styles.userdep}>{userData.department}</p>
       <p className={styles.userid}>{userData.email}</p>
-
       <div className={styles.homeimg}>
-        <Link to="/mainpage" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <img className={styles.home} src="img/home.png" alt="Home" />
         </Link>
       </div>
@@ -110,19 +167,22 @@ export default function Mypage() {
             <div className={styles.addschedulemodal}>
               <div className={styles.addmodalinputWrap}>
                 <input
-                  className={styles.schedulename}
+                  type = "text"
+                  className={styles.inputschedulename}
                   placeholder="제목"
                   value={schedulename}
-                  onChange={handleSchedulname}
+                  onChange={handleSchedulename}
                 />
               </div>
               <div className={styles.addmodalinputWrap2}>
                 <input
-                  className={styles.scheduleplace}
+                  type = "text"
+                  className={styles.inputscheduleplace}
                   placeholder="장소"
                   value={scheduleplace}
-                  onChange={handleSchedulplace}
+                  onChange={handleScheduleplace}
                 />
+              </div>
               </div>
               <img
                 className={styles.addschedulebar}
@@ -136,7 +196,53 @@ export default function Mypage() {
                 src="img/close.png"
                 alt="Close"
               />
-            </div>
+                   <DatePicker
+                    className={styles.startdatePicker}
+                    selected={startDate}
+                    placeholderText="시작 날짜를 선택하세요"
+                    dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                    onChange={handleChangeStartDate}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={30}
+                    selectsStart
+                    startDate={startDate}
+                    endDate={endDate}
+                    locale={ko}
+                    filterDate={filterPassedDate}
+                    popperPlacement="auto"
+                    calendarClassName={styles.calenderWrapper}
+                    dayClassName={(d) => {
+                      const isSelected = d.getDate() === (startDate && startDate.getDate());
+                      return isSelected ? styles.selectedDay : styles.unselectedDay;
+                    }}
+                  />
+                  <DatePicker
+                    className={styles.startdatePicker}
+                    selected={endDate}
+                    placeholderText="종료 날짜를 선택하세요"
+                    dateFormat="yyyy년 MM월 dd일 HH시 mm분"
+                    onChange={handleChangeEndDate}
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={30}
+                    selectsEnd
+                    startDate={startDate}
+                    endDate={endDate}
+                    locale={ko}
+                    filterDate={filterPassedDate}
+                    popperPlacement="auto" 
+                    calendarClassName={styles.calenderWrapper}
+                    dayClassName={(d) => {
+                      const isSelected = d.getDate() === (endDate && endDate.getDate());
+                      return isSelected ? styles.selectedDay : styles.unselectedDay;
+                    }}
+                  />
+                 <div>
+                  <button onClick={handleSaveSchedule} className={styles.schedulesave}>
+                    저장하기
+                  </button>
+                </div>
           </div>
         )}
       </div>
@@ -148,9 +254,11 @@ export default function Mypage() {
         />
       </div>
       <div>
+        <Link to="/login" style={{ textDecoration: "none" }}>
         <button onClick={handleLogout} className={styles.logoutButton}>
           로그아웃
         </button>
+        </Link>
       </div>
       <div>
         <Link to="/unregister" style={{ textDecoration: "none" }}>

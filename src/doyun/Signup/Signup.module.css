@@ -179,10 +179,11 @@
 .depname {
   display: block;
   margin: auto;
-  transform: translate(-340%, -250%);
+  transform: translate(-60%, -160%);
   border: none;
   background-color: white;
-  font-size: 17px;
+  font-weight: 700;
+  font-size: 15px;
 }
 
 .modal_useemail {
@@ -194,4 +195,40 @@
   width: 252px;
   height: 155px;
   transform: translateY(120%);
+}
+
+.modalfooter {
+  position: absolute;
+  transform: translateY(280%);
+}
+
+.failicon {
+  display: block;
+  margin: auto;
+  transform: translateY(50%);
+}
+
+.failtext {
+  text-align: center;
+  transform: translateY(100%);
+  color: #000;
+  font-family: Lato;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 20px;
+}
+
+.closemodal {
+  display: block;
+  margin: auto;
+  background-color: #ea6b6b;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  transform: translateY(150%);
 }

@@ -55,6 +55,38 @@ export default function Mypage() {
     setScheduleplace(e.target.value);
   };
 
+  const handleSaveSchedule = () => {
+    // Check if all required fields are filled
+    if (!schedulename || !scheduleplace || !startDate || !endDate) {
+      alert("모든 필수 항목을 입력하세요.");
+      return;
+    }
+
+    // Prepare data for the API request
+    const scheduleData = {
+      name: schedulename,
+      place: scheduleplace,
+      start_date: startDate,
+      end_date: endDate,
+      // Add any other necessary data
+    };
+
+    // Make an API request to save the schedule
+    axiosInstance
+      .put("/user/enroll-schedule/{scheduleName}", scheduleData)
+      .then((response) => {
+        // Handle the response from the server
+        console.log("Schedule saved successfully:", response.data);
+
+        // Close the modal and reset the form
+        hideModal();
+      })
+      .catch((error) => {
+        console.error("Error saving schedule:", error);
+        // Handle the error, e.g., show an error message
+      });
+    };
+
   useEffect(() => {
     // 사용자 정보를 가져오는 API 호출
     const token = localStorage.getItem("Authorization");

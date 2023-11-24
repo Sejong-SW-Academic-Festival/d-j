@@ -53,7 +53,6 @@ function Body({
         if (sub_category.subscribed) names.add(sub_category.name);
       });
     });
-    console.log("선별된 카테고리들:", names);
     return names;
   };
 
@@ -70,12 +69,20 @@ function Body({
     );
 
     //체크된 카테고리 관련 일정으로 거르기
+    const toShowcHeartSchedule = defaultCategories
+      .at(4)
+      .children.at(0).subscribed;
+    console.log(toShowcHeartSchedule);
+    console.log(defaultCategories);
     const subscribedCategoryNames = getSubscribedCategoryNames();
-    const categoryResult = thisMonthSchedule.filter((e) =>
-      subscribedCategoryNames.has(e.categoryName)
+    const categoryResult = thisMonthSchedule.filter(
+      (e) =>
+        subscribedCategoryNames.has(e.categoryName) ||
+        (toShowcHeartSchedule && e.liked)
     );
     setSchedules(categoryResult);
   };
+
   const getSchedules = async () => {
     const tempToken =
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQxNTE0MX0.8DeZiIwWj1kkdvtpdzpwa0OxubRSQxetr5MhGgoVWb8";
@@ -83,6 +90,7 @@ function Body({
       headers: { Authorization: tempToken },
     });
     initSchedules(scheduleResult.data.result);
+    console.log(scheduleResult.data.result);
   };
 
   useEffect(() => {
@@ -205,6 +213,7 @@ function Body({
           monthlySchedules={schedules}
           selDate={selectedDate}
           colors={categoryColor}
+          getSchedulesMothod={getSchedules}
         />
       )}
     </div>

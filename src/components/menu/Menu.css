@@ -51,6 +51,7 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 500;
+  color: #69695d;
 }
 
 .mainCategoryHead {
@@ -191,6 +192,7 @@ input[type="checkbox"] {
   position: relative;
   left: 7vw;
   top: 0.5vh;
+  color: #69695d;
 }
 
 .user-dept {

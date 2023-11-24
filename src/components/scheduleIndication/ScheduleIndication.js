@@ -1,4 +1,4 @@
-import { isAfter, isBefore } from "date-fns";
+import { isAfter, isBefore, isSameDay } from "date-fns";
 import "./ScheduleIndication.css";
 function ScheduleIndication({
   monthlySchedules,
@@ -9,11 +9,14 @@ function ScheduleIndication({
 }) {
   const toShowSchedules = monthlySchedules.filter(
     (e) =>
+      isSameDay(new Date(e.startDate), todayDate) ||
+      isSameDay(new Date(e.endDate), todayDate) ||
       !(
         isBefore(new Date(e.endDate), todayDate) ||
         isAfter(new Date(e.startDate), todayDate)
       )
   );
+
   function canShowSchedules(index) {
     if (index <= 2) return true;
     if (index == 3) return toShowSchedules.length <= 4;

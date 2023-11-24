@@ -54,7 +54,6 @@ function Menu({
       />
     </svg>
   );
-
   const unchecked_box = (
     <svg
       width="15"
@@ -99,8 +98,6 @@ function Menu({
   const onClickDownBarHandlar = (categoryHead) => {
     const prev = categoryDownBars;
     const findHead = prev.find((category) => category.name === categoryHead);
-    console.log(categoryHead, findHead);
-    console.log("prev:", prev);
     const result = prev.map((c) => {
       return c === findHead
         ? c.isActive

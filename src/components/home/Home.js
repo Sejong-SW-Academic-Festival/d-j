@@ -108,11 +108,7 @@ function Home() {
 
   useEffect(() => {
     getMenuSources();
-  }, []); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
-
-  //2. 그리고 그 내용 그대로 body.js에도 보내주기
-
-  //3. menu.js에서 클릭 내용 받아올 수 있도록 만든다음 body의 useState에 업데이트
+  }, []);
 
   return (
     <div className={styles.body}>

@@ -47,7 +47,7 @@ export default function Mypage() {
           console.error("Error fetching user profile:", error);
         });
     }
-  }, [axiosInstance]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");

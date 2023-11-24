@@ -36,6 +36,7 @@
   border-radius: 100%;
   position: relative;
   top: 12%;
+  left: 2%;
 }
 .sign.green {
   box-shadow: 0 0 0 3px #00b383 inset;
@@ -53,6 +54,10 @@
   box-shadow: 0 0 0 3px #01c7d3 inset;
 }
 
+.detail-like {
+  position: relative;
+  left: 85vw;
+}
 .heart-shape.unfilled {
   stroke: #8f9bb3;
   fill: none;
@@ -62,7 +67,6 @@
   fill: red;
   animation: fillHeart 1s ease-in-out forwards;
 }
-
 @keyframes fillHeart {
   0% {
     transform: rotate(0deg) scale(1);
@@ -81,11 +85,31 @@
   }
 }
 
-.schedule-name {
-  font-weight: 500;
+.schedule-info {
+  display: flex;
   position: relative;
-  left: -4vw;
-  top: 1.5vh; /*그냥 가운데로 맞춰버릴걸..*/
+  top: -15%;
+  left: 5%;
+}
+.schedule-name {
+  font-weight: 600;
+  font-size: 14px;
+
+  width: 40vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.time-and-location {
+  position: relative;
+  right: -5%;
+  font-weight: 600;
+  color: #69695d;
+}
+.time {
+  font-size: 14px;
+}
+.location {
+  font-size: 11px;
 }
 .schedule-name.green {
   color: #00b383;
@@ -101,10 +125,4 @@
 }
 .schedule-name.mint {
   color: #01c7d3;
-}
-
-.detail-like {
-  position: relative;
-  left: 85vw;
-  top: -5vh;
 }

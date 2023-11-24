@@ -1,27 +1,48 @@
 import React, { useState, useEffect } from "react";
-import { isAfter, isBefore } from "date-fns";
+import { isAfter, isBefore, format, isSameDay } from "date-fns";
 import "./ScheduleDetails.css";
-function ScheduleDetails({ monthlySchedules, selDate, colors }) {
+import axiosInstance from "../../axiosInstance";
+function ScheduleDetails({
+  monthlySchedules,
+  selDate,
+  colors,
+  getSchedulesMothod,
+}) {
   const toShowSchedules = monthlySchedules.filter(
     (e) =>
+      isSameDay(new Date(e.startDate), selDate) ||
+      isSameDay(new Date(e.endDate), selDate) ||
       !(
         isBefore(new Date(e.endDate), selDate) ||
         isAfter(new Date(e.startDate), selDate)
       )
   );
+  console.log("seldate:", selDate);
 
-  // //관심목록 받아오게 되면 여기 수정해줄것
-  const initDictionary = toShowSchedules.map((e) => ({ [e.id]: false }));
-  const [heartSchedules, setHeartSchedules] = useState(initDictionary);
+  const toggleHeartSchedules = async (isliked, scheduleName) => {
+    const tempToken =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQwMzQ0MX0.pQO2XmaIHlF48inrtnT-WXvtGywgRzL15OVsu4GOHV8";
 
-  function toggleHeartSchedules(scheduleID) {
-    const liked = heartSchedules[scheduleID];
-    setHeartSchedules((heartSchedules) => ({
-      ...heartSchedules,
-      [scheduleID]: !liked,
-    }));
-    console.log(heartSchedules);
-  }
+    if (isliked) {
+      const unbookResult = await axiosInstance.put(
+        `/user/unbook-schedule/${scheduleName}`,
+        {},
+        {
+          headers: { Authorization: tempToken },
+        }
+      );
+      getSchedulesMothod();
+    } else {
+      const bookResult = await axiosInstance.put(
+        `/user/book-schedule/${scheduleName}`,
+        {},
+        {
+          headers: { Authorization: tempToken },
+        }
+      );
+      getSchedulesMothod();
+    }
+  };
 
   return (
     <div className="detail-body">
@@ -29,17 +50,12 @@ function ScheduleDetails({ monthlySchedules, selDate, colors }) {
         {toShowSchedules.map((e) => (
           <div key={e.id} className={"detail"}>
             <div className={`sign ${colors[e.categoryType]}`}></div>
-            <span className={`schedule-name ${colors[e.categoryType]}`}>
-              {e.name}
-            </span>
             <div
               className="detail-like"
-              onClick={() => toggleHeartSchedules(e.id)}
+              onClick={() => toggleHeartSchedules(e.liked, e.name)}
             >
               <svg
-                className={`heart-shape ${
-                  heartSchedules[e.id] ? "filled" : "unfilled"
-                }`}
+                className={`heart-shape ${e.liked ? "filled" : "unfilled"}`}
                 width="17"
                 height="14"
                 viewBox="0 0 17 14"
@@ -52,6 +68,17 @@ function ScheduleDetails({ monthlySchedules, selDate, colors }) {
                   stroke-linejoin="round"
                 />
               </svg>
+            </div>
+            <div className="schedule-info">
+              <div className={`schedule-name ${colors[e.categoryType]}`}>
+                {e.name}
+              </div>
+              <div className="time-and-location">
+                <div className="time">
+                  {e.startDate.slice(11, 16)}-{e.endDate.slice(11, 16)}
+                </div>
+                <div className="location">{e.location}</div>
+              </div>
             </div>
           </div>
         ))}

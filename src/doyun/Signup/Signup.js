@@ -104,7 +104,7 @@ function Signup() {
 
         if (responseData.isSuccess) {
           console.log("회원가입 성공");
-          navigate('/');
+          navigate('/login');
         } else {
           console.log("회원가입 실패:", responseData.message);
           showUseemail();

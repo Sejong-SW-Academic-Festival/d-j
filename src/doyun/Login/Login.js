@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import axiosInstance from "../../axiosInstance";
 
-/* test 아이디
+  /* test 아이디
     hailcryptic@gmail.com
     test123
     */
@@ -53,8 +53,8 @@ export default function Login() {
           // 잘못된 비밀번호
           setFailpw(true);
         } else if (code === 200) {
-          const token = response.data.token;
-          localStorage.setItem("token", token);
+          const token = response.headers.authorization
+          localStorage.setItem("Authorization", token);
           setIsLoggedIn(true);
         }
       })

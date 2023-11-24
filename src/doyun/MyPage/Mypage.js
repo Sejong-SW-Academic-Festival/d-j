@@ -65,15 +65,17 @@ export default function Mypage() {
     // Prepare data for the API request
     const scheduleData = {
       name: schedulename,
-      place: scheduleplace,
-      start_date: startDate,
-      end_date: endDate,
+      location: scheduleplace,
+      startDate: startDate,
+      endDate: endDate,
+      categoryName: '개인일정',
+      description: '개인일정'
       // Add any other necessary data
     };
 
     // Make an API request to save the schedule
     axiosInstance
-      .put("/user/enroll-schedule/{scheduleName}", scheduleData)
+      .post("/user/add-personal-schedule", scheduleData)
       .then((response) => {
         // Handle the response from the server
         console.log("Schedule saved successfully:", response.data);

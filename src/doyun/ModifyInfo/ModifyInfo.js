@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./ModifyInfo.module.css";
 import axiosInstance from "../../axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 function ModifyInfo() {
   const [name, setName] = useState("");
@@ -12,6 +13,8 @@ function ModifyInfo() {
   const [searchResults, setSearchResults] = useState([]);
   const [selectDepText, setSelectDepText] = useState("소속 학과 재선택");
 
+  const navigate = useNavigate();
+  
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -84,7 +87,7 @@ function ModifyInfo() {
 
         if (responseData.isSuccess) {
           console.log("개인 정보 수정 성공");
-          // 메인 페이지로 이동 또는 다른 작업 수행
+          navigate('/');
         } else {
           console.log("개인 정보 수정 실패:", responseData.message);
         }

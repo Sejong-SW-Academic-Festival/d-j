@@ -1,6 +1,7 @@
 import styles from "./HeadBar.module.css";
 import axiosInstance from "../../axiosInstance";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 const f1 = async () => {
   const data_ = {
@@ -52,7 +53,8 @@ function HeadBar({ year, month, todayMonth, openMenu }) {
       <div onClick={todayMonth} className={styles.backToday}>
         {("0" + formattedDate).slice(-2)}
       </div>
-      <svg className={styles.personIcon} xmlns="http://www.w3.org/2000/svg">
+      <Link to="/mypage" style={{ textDecoration: "none" }}>
+        <svg className={styles.personIcon} xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_16_1435)">
           <g clipPath="url(#clip1_16_1435)">
             <path
@@ -72,6 +74,7 @@ function HeadBar({ year, month, todayMonth, openMenu }) {
           </clipPath>
         </defs>
       </svg>
+      </Link>
     </div>
   );
 }

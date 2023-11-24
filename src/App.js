@@ -11,6 +11,7 @@ import Login from "./doyun/Login/Login";
 import Signup from "./doyun/Signup/Signup";
 import Mypage from "./doyun/MyPage/Mypage";
 import ModifyInfo from "./doyun/ModifyInfo/ModifyInfo";
+import Unregister from "./doyun/Unregister/Unregister";
 
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/mypage" exact Component={Mypage} />
           <Route path="/login" exact Component={Login} />
           <Route path="/modifyInfo" exact Component={ModifyInfo} />
+          <Route path="/unregister" exact Component={Unregister} />
         </Routes>
       </Suspense>
     </BrowserRouter>

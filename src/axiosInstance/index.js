@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
 		'Content-Type': 'application/json',
         'Authorization': localStorage.getItem("Authorization") || ''
 	},
-	baseURL: 'http://43.202.250.219:8080',
+	baseURL: 'http://3.35.183.26:8080',
 });
 
 export default axiosInstance;

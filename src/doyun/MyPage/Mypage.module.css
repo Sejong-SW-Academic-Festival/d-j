@@ -1,3 +1,16 @@
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #eee;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+
 .profileimg {
   margin-top: 100px;
   text-align: center;
@@ -6,7 +19,7 @@
 .home {
   display: block;
   margin: auto;
-  transform: translate(-550%, -1350%);
+  transform: translate(-550%, -1550%);
 }
 
 .username {
@@ -55,7 +68,7 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  transform: translateY(-120%);
+  transform: translateY(-160%);
 }
 
 .secondButton {
@@ -70,7 +83,7 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  transform: translateY(-90%);
+  transform: translateY(-130%);
 }
 
 .thirdButton {
@@ -85,12 +98,14 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  transform: translateY(-60%);
+  transform: translateY(-100%);
 }
 
 .mypagel {
-  text-align: center;
-  transform: translateY(-170%);
+  position: relative;
+  display: block;
+  margin: auto;
+  transform: translateY(-200%);
 }
 
 .mypageline {
@@ -100,18 +115,18 @@
 
 .mypagel2 {
   text-align: center;
-  transform: translateY(-380%);
+  transform: translateY(-520%);
 }
 
 .mypagel3 {
   text-align: center;
-  transform: translateY(-160%);
+  transform: translateY(-260%);
 }
 
 .logoutline {
   display: block;
   margin: auto;
-  transform: translate(10800%, -475%);
+  transform: translate(10800%, -280%);
 }
 
 .logoutButton {
@@ -156,19 +171,20 @@
 }
 
 .addschedulebar {
-  position: absolute;
-  transform: translateY(-193%);
+  display: block;
+  margin: auto;
+  transform: translateY(-610%);
 }
 
 .modalcloseButton {
   position: absolute;
   cursor: pointer;
-  transform: translate(1630%, -430%);
+  transform: translate(1680%, -1840%);
 }
 
 .addtext {
   position: absolute;
-  transform: translate(10%, -440%);
+  transform: translate(20%, -1540%);
   color: #fff;
   font-size: 19px;
   font-weight: 700;
@@ -188,6 +204,16 @@
   color: #d9d9d9;
 }
 
+.modal_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
 .addmodalinputWrap {
   position: relative;
   width: 90.7%;
@@ -196,11 +222,17 @@
   padding: 16px;
   background-color: white;
   border: 1px solid #d9d9d9;
-  transform: translate(0%, 200%);
+  color: #69695d;
+  transform: translate(0%, 150%);
 }
 
-.scheduleplace {
-  position: relative;
+.addmodalinputWrap:focus-within {
+  border: 1px solid #ea6b6b;
+}
+
+.inputschedulename {
+  width: 100%;
+  height: 17px;
   outline: none;
   border: none;
   font-size: 14px;
@@ -208,7 +240,7 @@
   color: #69695d;
 }
 
-.scheduleplace::placeholder {
+.inputschedulename::placeholder {
   color: #d9d9d9;
 }
 
@@ -220,5 +252,61 @@
   padding: 16px;
   background-color: white;
   border: 1px solid #d9d9d9;
-  transform: translate(0%, 290%);
+  color: #69695d;
+  transform: translate(0%, 230%);
+}
+
+.addmodalinputWrap2:focus-within {
+  border: 1px solid #ea6b6b;
+}
+
+.inputscheduleplace {
+  width: 100%;
+  height: 17px;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: #69695d;
+}
+
+.inputscheduleplace::placeholder {
+  color: #d9d9d9;
+}
+
+.startdatePicker {
+  border: 1px solid #d9d9d9;
+  transform: translate(3.5%, -210%);
+  height: 50px;
+  width: 360px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: #69695d;
+}
+
+.enddatePicker {
+  border: 1px solid #d9d9d9;
+  transform: translate(0%, 350%);
+  height: 50px;
+  width: 360px;
+}
+
+.schedulesave {
+  display: block;
+  margin: auto;
+  height: 35px;
+  width: 105px;
+  border: none;
+  border-radius: 10px;
+  background: #EA6B6B;
+  color: white;
+  font-family: Lato;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px; /* 93.333% */
+  letter-spacing: 0.75px;
+  transform: translateY(-300%);
 }

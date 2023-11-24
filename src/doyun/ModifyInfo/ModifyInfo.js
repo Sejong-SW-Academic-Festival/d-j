@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./ModifyInfo.module.css";
+import axiosInstance from "../../axiosInstance";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -25,16 +26,6 @@ function Signup() {
   const handleDep = (e) => {
     setDep(e.target.value);
   };
-
-  const axiosInstance = axios.create({
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("Authorization") || "",
-    },
-    baseURL: "http://43.202.250.219:8080",
-  });
 
   const searchres = () => {
     const encodedDepartmentName = encodeURIComponent(dep);

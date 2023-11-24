@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
+import axiosInstance from "../../axiosInstance";
 
 /* test 아이디
     hailcryptic@gmail.com
@@ -36,8 +37,8 @@ export default function Login() {
   };
 
   const handleLogin = () => {
-    axios
-      .post(`http://43.202.250.219:8080/user/login`, {
+    axiosInstance
+      .post(`/user/login`, {
         email: email,
         password: pw,
       })

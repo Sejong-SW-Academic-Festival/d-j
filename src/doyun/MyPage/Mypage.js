@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Mypage.module.css";
+import axiosInstance from "../../axiosInstance";
 
 export default function Mypage() {
   const history = useNavigate();
@@ -26,16 +27,6 @@ export default function Mypage() {
   const handleSchedulplace = (e) => {
     setSchedulplace(e.target.value);
   };
-
-  const axiosInstance = axios.create({
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("Authorization") || "",
-    },
-    baseURL: "http://43.202.250.219:8080",
-  });
 
   useEffect(() => {
     // 사용자 정보를 가져오는 API 호출

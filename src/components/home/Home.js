@@ -52,17 +52,14 @@ function Home() {
     setUserInfo(e);
   };
 
-  //메뉴창 - 카테고리 정보
+  //메뉴창 - 카테고리 정보 (메뉴창과 연동용으로 일시적임)
   const [categories, setCategories] = useState([]);
-
   const addCategories = (e) => {
     setCategories(e);
   };
 
   const tempGetOpposite = (temp) => !temp;
-
   const setCategorySubscribe = (elem) => {
-    console.log("구독하고 싶다는데?:", elem, "prev:", categories);
     const updatedCategoriesMine = categories.map((main_category) => ({
       ...main_category,
       children: main_category.children.map((sub_category) => {
@@ -90,8 +87,6 @@ function Home() {
             };
       }),
     }));
-
-    console.log("결과물:", updatedCategoriesMine);
     setCategories(updatedCategoriesMine);
   };
 
@@ -116,6 +111,7 @@ function Home() {
   }, []); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
 
   //2. 그리고 그 내용 그대로 body.js에도 보내주기
+
   //3. menu.js에서 클릭 내용 받아올 수 있도록 만든다음 body의 useState에 업데이트
 
   return (
@@ -147,6 +143,7 @@ function Home() {
         toNextMonth={nextMonth}
         toPrevMonth={prevMonth}
         onSetSelectedDate={setSelectedDate}
+        defaultCategories={categories}
       />
     </div>
   );

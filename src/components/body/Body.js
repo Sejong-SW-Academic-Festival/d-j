@@ -25,6 +25,7 @@ function Body({
   toNextMonth,
   toPrevMonth,
   onSetSelectedDate,
+  defaultCategories,
 }) {
   //월별 날짜 셋팅
   const today = new Date();
@@ -42,29 +43,46 @@ function Body({
   const [dragStartYCoord, setYCoord] = useState(1);
   const [dragStartXCoord, setXCoord] = useState(1);
 
+  const getSubscribedCategoryNames = () => {
+    const names = new Set();
+    defaultCategories.forEach((main_category) => {
+      main_category.children.forEach((sub_category) => {
+        sub_category.children.forEach((last_child) => {
+          if (last_child.subscribed) names.add(last_child.name);
+        });
+        if (sub_category.subscribed) names.add(sub_category.name);
+      });
+    });
+    console.log("선별된 카테고리들:", names);
+    return names;
+  };
+
   //월별 스케줄 셋팅
   const [schedules, setSchedules] = useState([]);
-  const addSchedules = (e) => {
-    setSchedules(e);
-  };
-  const getSchedules = async () => {
-    const tempToken =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQxNTE0MX0.8DeZiIwWj1kkdvtpdzpwa0OxubRSQxetr5MhGgoVWb8";
-    const res = await axiosInstance.get("/schedule/get-list", {
-      headers: { Authorization: tempToken },
-    });
-    const myResult = res.data.result;
-    console.log("myResult:", myResult);
-    //임시데이터
-    // const myResult = temp_data.result;
-    const thisMonthSchedule = myResult.filter(
+  const initSchedules = (e) => {
+    //날짜 이번달로 맞추기
+    const thisMonthSchedule = e.filter(
       (schedule) =>
         !(
           isBefore(new Date(schedule.endDate), startDateOfCal) ||
           isAfter(new Date(schedule.startDate), endDateOfCal)
         )
     );
-    addSchedules(thisMonthSchedule);
+
+    //체크된 카테고리 관련 일정으로 거르기
+    const subscribedCategoryNames = getSubscribedCategoryNames();
+    const categoryResult = thisMonthSchedule.filter((e) =>
+      subscribedCategoryNames.has(e.categoryName)
+    );
+    setSchedules(categoryResult);
+  };
+  const getSchedules = async () => {
+    const tempToken =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQxNTE0MX0.8DeZiIwWj1kkdvtpdzpwa0OxubRSQxetr5MhGgoVWb8";
+    const scheduleResult = await axiosInstance.get("/user/get-all-schedules", {
+      headers: { Authorization: tempToken },
+    });
+    initSchedules(scheduleResult.data.result);
   };
 
   useEffect(() => {
@@ -74,7 +92,7 @@ function Body({
       if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);
       else onSetSelectedDate(monthStart);
     }
-  }, [currentMonth]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
+  }, [currentMonth, defaultCategories]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
 
   const categoryColor = {
     ACADEMIC: "green",

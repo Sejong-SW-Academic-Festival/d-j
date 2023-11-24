@@ -5,13 +5,28 @@
 .details-container {
   position: absolute;
   top: 51vh;
+  width: 92vw;
+  height: 48vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  animation: fadeInUp 0.5s;
 }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
 .detail {
-  width: 90vw;
+  width: 92vw;
   height: 11vh;
   background: #eeeeee;
-  padding-left: 1vh;
-  padding-right: 1vh;
   margin-bottom: 1vh;
 }
 
@@ -32,7 +47,38 @@
   box-shadow: 0 0 0 3px #ea6b6b inset;
 }
 .sign.orange {
-  box-shadow: 0 0 0 3px orange inset;
+  box-shadow: 0 0 0 3px #ea916b inset;
+}
+.sign.mint {
+  box-shadow: 0 0 0 3px #01c7d3 inset;
+}
+
+.heart-shape.unfilled {
+  stroke: #8f9bb3;
+  fill: none;
+}
+.heart-shape.filled {
+  stroke: red;
+  fill: red;
+  animation: fillHeart 1s ease-in-out forwards;
+}
+
+@keyframes fillHeart {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  70% {
+    transform: rotate(360deg) scale(1);
+  }
+
+  80% {
+    transform: rotate(360deg) scale(1.2);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 .schedule-name {
@@ -51,7 +97,10 @@
   color: #ea6b6b;
 }
 .schedule-name.orange {
-  color: orange;
+  color: #ea916b;
+}
+.schedule-name.mint {
+  color: #01c7d3;
 }
 
 .detail-like {

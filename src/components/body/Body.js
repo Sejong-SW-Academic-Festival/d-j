@@ -13,6 +13,7 @@ import ScheduleIndication from "../scheduleIndication/ScheduleIndication";
 import ScheduleDetails from "../scheduleDetails/ScheduleDetails";
 import axiosInstance from "../../axiosInstance";
 import "./Body.css";
+import temp_data from "../temp_data/schedule_list.json";
 
 function Body({
   currentMonth,
@@ -24,6 +25,7 @@ function Body({
   toNextMonth,
   toPrevMonth,
   onSetSelectedDate,
+  defaultCategories,
 }) {
   //월별 날짜 셋팅
   const today = new Date();
@@ -41,38 +43,65 @@ function Body({
   const [dragStartYCoord, setYCoord] = useState(1);
   const [dragStartXCoord, setXCoord] = useState(1);
 
-  //월별 스케줄 셋팅
-  //이걸 지금 업데이트 될 때마다 호출하는데 너무 비효율적이지 않나?? 월 바뀔 때만 호출할 수는 없나??
-  const [schedules, setSchedules] = useState([]);
-  const setSchedulesTemp = (e) => {
-    setSchedules(e);
+  const getSubscribedCategoryNames = () => {
+    const names = new Set();
+    defaultCategories.forEach((main_category) => {
+      main_category.children.forEach((sub_category) => {
+        sub_category.children.forEach((last_child) => {
+          if (last_child.subscribed) names.add(last_child.name);
+        });
+        if (sub_category.subscribed) names.add(sub_category.name);
+      });
+    });
+    console.log("선별된 카테고리들:", names);
+    return names;
   };
-  // const getSchedules = async () => {
-  //   const tempToken =
-  //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTUzNDc1Mn0.MWRNWdk9m1KDuYvuzK3tXoOV9xtLFKf9WUMAIV0UYK0";
-  //   const res = await axiosInstance.get("/schedule/get-list", {
-  //     headers: { Authorization: tempToken },
-  //   });
-  //   const myResult = res.data.result;
-  //   const thisMonthSchedule = myResult.filter(
-  //     (schedule) =>
-  //       !(
-  //         isBefore(new Date(schedule.endDate), startDateOfCal) ||
-  //         isAfter(new Date(schedule.startDate), endDateOfCal)
-  //       )
-  //   );
-  //   setSchedulesTemp(thisMonthSchedule);
-  // };
+
+  //월별 스케줄 셋팅
+  const [schedules, setSchedules] = useState([]);
+  const initSchedules = (e) => {
+    //날짜 이번달로 맞추기
+    const thisMonthSchedule = e.filter(
+      (schedule) =>
+        !(
+          isBefore(new Date(schedule.endDate), startDateOfCal) ||
+          isAfter(new Date(schedule.startDate), endDateOfCal)
+        )
+    );
+
+    //체크된 카테고리 관련 일정으로 거르기
+    const subscribedCategoryNames = getSubscribedCategoryNames();
+    const categoryResult = thisMonthSchedule.filter((e) =>
+      subscribedCategoryNames.has(e.categoryName)
+    );
+    setSchedules(categoryResult);
+  };
+  const getSchedules = async () => {
+    const tempToken =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQxNTE0MX0.8DeZiIwWj1kkdvtpdzpwa0OxubRSQxetr5MhGgoVWb8";
+    const scheduleResult = await axiosInstance.get("/user/get-all-schedules", {
+      headers: { Authorization: tempToken },
+    });
+    initSchedules(scheduleResult.data.result);
+  };
 
   useEffect(() => {
-    //getSchedules(); //일단은 통신 막아두기
+    getSchedules();
     console.log("끼얏호");
-    if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);
-    else onSetSelectedDate(monthStart);
-  }, [currentMonth]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
+    if (!isSameMonth(currentMonth, selectedDate)) {
+      if (isSameMonth(currentMonth, today)) onSetSelectedDate(today);
+      else onSetSelectedDate(monthStart);
+    }
+  }, [currentMonth, defaultCategories]); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
 
-  const colorList = ["pink", "blue", "green", "orange"]; //추후 카테고리별 컬러로 바꿔야함
-  //왠지 인덱스 기준으로 컬러를 정해서 나중에 오류 왕창 날 것 같음
+  const categoryColor = {
+    ACADEMIC: "green",
+    COLLEGE: "blue",
+    DEPARTMENT: "blue",
+    DO_DREAM: "pink",
+    CLUB: "mint",
+    PERSONAL: "orange",
+  };
 
   while (day <= endDateOfCal) {
     for (let i = 0; i < 7; i++) {
@@ -108,7 +137,8 @@ function Body({
             monthlySchedules={schedules}
             todayDate={day}
             isBigCal={isBigCal}
-            colors={colorList}
+            colors={categoryColor}
+            isSameMonth={isSameMonth(day, monthStart)}
           />
         </div>
       );
@@ -174,7 +204,7 @@ function Body({
         <ScheduleDetails
           monthlySchedules={schedules}
           selDate={selectedDate}
-          colors={colorList}
+          colors={categoryColor}
         />
       )}
     </div>

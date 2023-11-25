@@ -39,7 +39,7 @@ function Unregister() {
             <p className={styles.unregisterText}>회원탈퇴</p>
             <div className={styles.backbutton}>
                 <Link to="/mypage" style={{ textDecoration: "none" }}>
-                    <img className={styles.backicon} src="img/backicon.png" />
+                    <img className={styles.backicon} src="img/backIcon.png" />
                 </Link>
             </div>
             <div className={styles.unregisterbox}>

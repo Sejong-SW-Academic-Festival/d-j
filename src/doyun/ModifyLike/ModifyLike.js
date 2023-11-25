@@ -196,7 +196,7 @@ export default function ModifyLike() {
             <p className={styles.userid}>{userData.email}</p>
             <div className={styles.backbutton}>
                 <Link to="/mypage" style={{ textDecoration: "none" }}>
-                    <img className={styles.backicon} src="img/backicon.png" />
+                    <img className={styles.backicon} src="img/backIcon.png" />
                 </Link>
             </div>
             <div className={styles.wrapper}>

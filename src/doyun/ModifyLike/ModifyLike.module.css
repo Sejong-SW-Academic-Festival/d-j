@@ -232,9 +232,13 @@
   border-bottom-right-radius: 8px;
 }
 
-.opened {}
+.opened {
+  visibility: visible;
+}
 
-.closed {}
+.closed {
+  visibility: collapse;
+}
 
 .flexText {
   margin-left: 2vw;

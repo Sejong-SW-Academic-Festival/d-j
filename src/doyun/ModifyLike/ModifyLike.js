@@ -212,7 +212,7 @@ export default function ModifyLike() {
                                     <div className={styles.flextext}> {mainCategory["name"]} </div>
                                     {
                                         categoryDownBars.length !== 0 &&
-                                            isActive(mainCategory) ? up_vector : down_vector
+                                            isActive(mainCategory) ? up_vector: down_vector
                                     }
                                 </div>
                             }
@@ -221,7 +221,7 @@ export default function ModifyLike() {
                                 mainCategory['children'].map((subCategory) => (
                                     <div className={`${styles.subCategory}  ${categoryDownBars.length !== 0 && isActive(mainCategory) ? styles.opened : styles.closed}`} key={subCategory['id']}>
                                         {
-                                            subCategory.subscribed ? checked_box : unchecked_box
+                                            subCategory.subscribed ? <div className={`${categoryDownBars.length !== 0 && isActive(mainCategory) ? 'opened' : 'closed'}`}> { checked_box } </div> : <div className={`${categoryDownBars.length !== 0 && isActive(mainCategory) ? 'opened' : 'closed'}`}> { unchecked_box } </div>
                                         }
                                         <div className={styles.flexText} onClick={() => { unregister(subCategory); subCategory.subscribed = !subCategory.subscribed; setReload(reload + 1); }}>
                                             {
@@ -233,7 +233,7 @@ export default function ModifyLike() {
                                                 subCategory['children'].map((department) => (
                                                     <div className={`${styles.department}`} key={department['id']}>
                                                         {
-                                                            department.subscribed ? checked_box : unchecked_box
+                                                            department.subscribed ? <div className={`${categoryDownBars.length !== 0 && isActive(mainCategory) ? 'opened' : 'closed'}`}> { checked_box } </div> : <div className={`${categoryDownBars.length !== 0 && isActive(mainCategory) ? 'opened' : 'closed'}`}> { unchecked_box } </div>
                                                         }
                                                         <div className={styles.flexText} onClick={() => { unregister(department); department.subscribed = !department.subscribed; setReload(reload + 1); }}>
                                                             {

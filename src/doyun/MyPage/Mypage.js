@@ -67,8 +67,8 @@ export default function Mypage() {
       location: scheduleplace,
       startDate: startDate,
       endDate: endDate,
-      categoryName: '개인일정',
-      description: '개인일정'
+      categoryName: '등록일정',
+      description: '등록일정'
       // Add any other necessary data
     };
 

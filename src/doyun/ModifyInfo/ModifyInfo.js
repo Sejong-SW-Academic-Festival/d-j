@@ -128,7 +128,7 @@ function ModifyInfo() {
         </Link>
       </div>
       <div className={styles.ModifyBox}>
-        <img className={styles.ModifyBox} src="img/ModifyBox.png" />
+        <img className={styles.ModifyBox} src="img/Modifybox.png" />
       </div>
       <div className={styles.Modifycontent}>
         <div className={styles.Title}>이름</div>

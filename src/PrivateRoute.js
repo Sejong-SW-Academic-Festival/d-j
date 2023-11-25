@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 export { PrivateRoute };
 
 function PrivateRoute({ children }) {
-  return children;
   const auth = localStorage.getItem("Authorization");
   let authUser = true;
 
@@ -11,7 +10,7 @@ function PrivateRoute({ children }) {
 
   if (!authUser) {
     // not logged in so redirect to login page with the return url
-    return <Navigate to="/2" />;
+    return <Navigate to="/login" />;
   }
 
   // authorized so return child components

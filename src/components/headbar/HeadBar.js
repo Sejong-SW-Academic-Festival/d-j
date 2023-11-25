@@ -3,18 +3,6 @@ import axiosInstance from "../../axiosInstance";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-const f1 = async () => {
-  const data_ = {
-    email: "hailcryptic3@gmail.com",
-    password: "test1234",
-    name: "Woojin",
-    department: "test",
-  };
-
-  const res1 = await axiosInstance.post("/user/signup", data_);
-
-  console.log(res1.data);
-};
 function HeadBar({ year, month, todayMonth, openMenu }) {
   const day = new Date();
   const formattedDate = format(day, "d");
@@ -45,10 +33,6 @@ function HeadBar({ year, month, todayMonth, openMenu }) {
             {month}
           </div>
         </div>
-      </div>
-      <div className={styles.moveMonthBtn}>
-        {/*임시*/}
-        <button onClick={f1}>test</button>
       </div>
       <div onClick={todayMonth} className={styles.backToday}>
         {("0" + formattedDate).slice(-2)}

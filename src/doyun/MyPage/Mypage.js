@@ -111,7 +111,7 @@ export default function Mypage() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("Authorization");
   };
 
   return (

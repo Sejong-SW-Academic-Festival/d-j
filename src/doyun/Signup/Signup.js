@@ -15,7 +15,7 @@ function Signup() {
   const [searchResults, setSearchResults] = useState([]);
   const [selectDepText, setSelectDepText] = useState("소속 학과 선택");
   const [useemail, setUseemail] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -52,7 +52,6 @@ function Signup() {
     axiosInstance
       .get(`/category/find-department/${encodedDepartmentName}`, {
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
           Accept: "application/json",
         },
         params: {
@@ -105,7 +104,7 @@ function Signup() {
 
         if (responseData.isSuccess) {
           console.log("회원가입 성공");
-          history.push("/mainpage");
+          navigate('/login');
         } else {
           console.log("회원가입 실패:", responseData.message);
           showUseemail();
@@ -214,7 +213,6 @@ function Signup() {
                 src="img/searchresultbox.png"
                 alt="Search Result Box"
               />
-              <ul>
                 {searchResults.map((result) => (
                   <button
                     onClick={() => {
@@ -227,7 +225,6 @@ function Signup() {
                     {result.name}
                   </button>
                 ))}
-              </ul>
             </div>
           </div>
         )}

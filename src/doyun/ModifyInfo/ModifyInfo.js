@@ -3,14 +3,18 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./ModifyInfo.module.css";
 import axiosInstance from "../../axiosInstance";
+import { useNavigate } from "react-router-dom";
 
-function Signup() {
+function ModifyInfo() {
   const [name, setName] = useState("");
+  const [userData, setUserData] = useState({});
   const [modal, setModal] = useState(false);
   const [dep, setDep] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectDepText, setSelectDepText] = useState("소속 학과 재선택");
 
+  const navigate = useNavigate();
+  
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -33,7 +37,6 @@ function Signup() {
     axiosInstance
       .get(`/category/find-department/${encodedDepartmentName}`, {
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
           Accept: "application/json",
         },
         params: {
@@ -71,34 +74,59 @@ function Signup() {
       });
   };
 
-  const handleSignup = () => {
+  const handleModify = () => {
     const userData = {
       name,
       department: selectDepText,
     };
     axiosInstance
-      .post("/user/signup", userData)
+      .patch("/user/update", userData)
       .then((response) => {
         const responseData = response.data;
         console.log(responseData);
 
         if (responseData.isSuccess) {
-          console.log("회원가입 성공");
-          // 여기서 메인페이지로 곧바로 이동
+          console.log("개인 정보 수정 성공");
+          navigate('/');
         } else {
-          console.log("회원가입 실패:", responseData.message);
+          console.log("개인 정보 수정 실패:", responseData.message);
         }
       })
       .catch((error) => {
-        console.error("회원가입 중 오류 발생:", error.message);
+        alert("개인 정보 수정 실패");
+        console.error("개인 정보 수정 중 오류 발생:", error.message);
       });
   };
+
+  useEffect(() => {
+    // 사용자 정보를 가져오는 API 호출
+    const token = localStorage.getItem("Authorization");
+
+    if (token) {
+      axiosInstance
+        .get("/user/mypage", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          // API에서 받아온 사용자 정보를 상태 변수에 저장
+          setUserData(response.data.result);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+        });
+    }
+  }, []);
 
   return (
     <div className={styles.signuppage}>
       <div className={styles.profileimg}>
         <img className={styles.profile} src="img/profile.png" />
       </div>
+      <p className={styles.username}>{userData.name}</p>
+      <p className={styles.userdep}>{userData.department}</p>
+      <p className={styles.userid}>{userData.email}</p>
       <div className={styles.backbutton}>
         <Link to="/mypage" style={{ textDecoration: "none" }}>
           <img className={styles.backicon} src="img/backicon.png" />
@@ -119,7 +147,7 @@ function Signup() {
         </div>
       </div>
       <div>
-        <button onClick={handleSignup} className={styles.modifyButton}>
+        <button onClick={handleModify} className={styles.modifyButton}>
           수정하기
         </button>
       </div>
@@ -151,11 +179,12 @@ function Signup() {
                 className={styles.closeButton}
                 src="img/close.png"
               />
-              <img
-                className={styles.searchresultbox}
-                src="img/searchresultbox.png"
-              />
-              <ul>
+              <div className={styles.searchResultContainer}>
+                <img
+                  className={styles.searchresultbox}
+                  src="img/searchresultbox.png"
+                  alt="Search Result Box"
+                />
                 {searchResults.map((result) => (
                   <button
                     onClick={() => {
@@ -168,7 +197,7 @@ function Signup() {
                     {result.name}
                   </button>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         )}
@@ -177,4 +206,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default ModifyInfo;

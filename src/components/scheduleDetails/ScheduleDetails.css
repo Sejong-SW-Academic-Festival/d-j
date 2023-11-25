@@ -57,6 +57,7 @@
 .detail-like {
   position: relative;
   left: 85vw;
+  z-index: 100;
 }
 .heart-shape.unfilled {
   stroke: #8f9bb3;

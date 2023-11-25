@@ -20,26 +20,13 @@ function ScheduleDetails({
   console.log("seldate:", selDate);
 
   const toggleHeartSchedules = async (isliked, scheduleName) => {
-    const tempToken =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQwMzQ0MX0.pQO2XmaIHlF48inrtnT-WXvtGywgRzL15OVsu4GOHV8";
-
     if (isliked) {
       const unbookResult = await axiosInstance.put(
-        `/user/unbook-schedule/${scheduleName}`,
-        {},
-        {
-          headers: { Authorization: tempToken },
-        }
-      );
+        `/user/unbook-schedule/${scheduleName}`);
       getSchedulesMothod();
     } else {
       const bookResult = await axiosInstance.put(
-        `/user/book-schedule/${scheduleName}`,
-        {},
-        {
-          headers: { Authorization: tempToken },
-        }
-      );
+        `/user/book-schedule/${scheduleName}`);
       getSchedulesMothod();
     }
   };
@@ -53,6 +40,7 @@ function ScheduleDetails({
             <div
               className="detail-like"
               onClick={() => toggleHeartSchedules(e.liked, e.name)}
+
             >
               <svg
                 className={`heart-shape ${e.liked ? "filled" : "unfilled"}`}

@@ -95,11 +95,7 @@ export default function Mypage() {
 
     if (token) {
       axiosInstance
-        .get("/user/mypage", {
-          headers: {
-            Authorization: token,
-          },
-        })
+        .get("/user/mypage")
         .then((response) => {
           // API에서 받아온 사용자 정보를 상태 변수에 저장
           setUserData(response.data.result);

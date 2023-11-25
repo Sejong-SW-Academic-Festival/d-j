@@ -10,6 +10,7 @@ export default function ModifyLike() {
     const [userSubscribedCategory, setUserSubscribedCategory] = useState([]);
     let [categoryDownBars, setCategoryDownBars] = useState([]);
     const [reload, setReload] = useState(1);
+    const [userData, setUserData] = useState({});
     let subscribedCategory = [];
 
     const up_vector = (
@@ -101,25 +102,25 @@ export default function ModifyLike() {
     };
 
     const unregister = (category) => {
-        if(category.subscribed) {
+        if (category.subscribed) {
             axiosInstance.put('/user/unsubscribe-category/' + category.name)
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
             console.log("subscribe!");
         }
 
         else {
             axiosInstance.put('/user/subscribe-category/' + category.name)
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
             console.log("subscribe!");
         }
     }
@@ -169,68 +170,88 @@ export default function ModifyLike() {
 
     }, [userSubscribedCategory]);
 
+    useEffect(() => {
+        // 사용자 정보를 가져오는 API 호출
+        const token = localStorage.getItem("Authorization");
+
+        if (token) {
+            axiosInstance
+                .get("/user/mypage")
+                .then((response) => {
+                    // API에서 받아온 사용자 정보를 상태 변수에 저장
+                    setUserData(response.data.result);
+                })
+                .catch((error) => {
+                    console.error("Error fetching user profile:", error);
+                });
+        }
+    }, []);
+
     return (
-        <div className={styles.signuppage}>
+        <div className={styles.modifylikepage}>
             <div className={styles.profileimg}>
                 <img className={styles.profile} src="img/profile.png" />
             </div>
+            <p className={styles.username}>{userData.name}</p>
+            <p className={styles.userdep}>{userData.department}</p>
+            <p className={styles.userid}>{userData.email}</p>
             <div className={styles.backbutton}>
                 <Link to="/mypage" style={{ textDecoration: "none" }}>
                     <img className={styles.backicon} src="img/backicon.png" />
                 </Link>
             </div>
             <div className={styles.wrapper}>
-            {
-                userSubscribedCategory.map((mainCategory) =>
-                (
-                    <div className={styles.mainCategory} key={mainCategory['id']}>
-                        {
-                            <div
-                                className={`${styles.mainCategoryHead}`}
-                                onClick={() => onClickDownBarHandlar(mainCategory)}
-                            >
-                                <div className="flexText"> {mainCategory["name"]} </div>
-                                {
-                                    categoryDownBars.length !== 0 &&
-                                        isActive(mainCategory) ? up_vector : down_vector
-                                }
-                            </div>
-                        }
-
-                        {
-                            mainCategory['children'].map((subCategory) => (
-                                <div className={`${styles.subCategory}  ${categoryDownBars.length !== 0 && isActive(mainCategory) ? styles.opened : styles.closed}`} key={subCategory['id']}>
+                {
+                    userSubscribedCategory.map((mainCategory) =>
+                    (
+                        <div className={styles.mainCategory} key={mainCategory['id']}>
+                            {
+                                <div
+                                    className={`${styles.mainCategoryHead}`}
+                                    onClick={() => onClickDownBarHandlar(mainCategory)}
+                                >
+                                    <div className={styles.flextext}> {mainCategory["name"]} </div>
                                     {
-                                        subCategory.subscribed ? checked_box : unchecked_box
-                                    }
-                                    <div onClick={() => { unregister(subCategory); subCategory.subscribed = !subCategory.subscribed; setReload(reload + 1);  }}>
-                                    {
-                                        subCategory['name']
-                                    }
-                                    </div>
-                                    {
-                                        subCategory['children'] ?
-                                            subCategory['children'].map((department) => (
-                                                <div className={`${styles.department}`} key={department['id']}>
-                                                    {
-                                                        department.subscribed ? checked_box : unchecked_box
-                                                    }
-                                                    <div onClick={() => { unregister(department); department.subscribed = !department.subscribed; setReload(reload + 1); }}>
-                                                    {
-                                                        department['name']
-                                                    }
-                                                    </div>
-                                                </div>
-                                            ))
-                                            :
-                                            <></>
+                                        categoryDownBars.length !== 0 &&
+                                            isActive(mainCategory) ? up_vector : down_vector
                                     }
                                 </div>
-                            ))
-                        }
-                    </div>
-                ))
-            }</div>
+                            }
+
+                            {
+                                mainCategory['children'].map((subCategory) => (
+                                    <div className={`${styles.subCategory}  ${categoryDownBars.length !== 0 && isActive(mainCategory) ? styles.opened : styles.closed}`} key={subCategory['id']}>
+                                        {
+                                            subCategory.subscribed ? checked_box : unchecked_box
+                                        }
+                                        <div className={styles.flexText} onClick={() => { unregister(subCategory); subCategory.subscribed = !subCategory.subscribed; setReload(reload + 1); }}>
+                                            {
+                                                subCategory['name']
+                                            }
+                                        </div>
+                                        {
+                                            subCategory['children'] ?
+                                                subCategory['children'].map((department) => (
+                                                    <div className={`${styles.department}`} key={department['id']}>
+                                                        {
+                                                            department.subscribed ? checked_box : unchecked_box
+                                                        }
+                                                        <div className={styles.flexText} onClick={() => { unregister(department); department.subscribed = !department.subscribed; setReload(reload + 1); }}>
+                                                            {
+                                                                department['name']
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                ))
+                                                :
+                                                <></>
+                                        }
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    ))
+                }</div>
         </div>
     );
 }

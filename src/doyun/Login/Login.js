@@ -24,7 +24,7 @@ export default function Login() {
   const navigate = useNavigate();
   useEffect(() => {
     // 페이지가 로드될 때 localStorage에서 토큰을 확인하여 로그인 상태를 설정
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Authorization");
     if (token) {
       setIsLoggedIn(true);
     }

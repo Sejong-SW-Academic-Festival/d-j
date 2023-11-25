@@ -14,7 +14,7 @@ function ModifyInfo() {
   const [selectDepText, setSelectDepText] = useState("소속 학과 재선택");
 
   const navigate = useNavigate();
-  
+
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -104,11 +104,7 @@ function ModifyInfo() {
 
     if (token) {
       axiosInstance
-        .get("/user/mypage", {
-          headers: {
-            Authorization: token,
-          },
-        })
+        .get("/user/mypage")
         .then((response) => {
           // API에서 받아온 사용자 정보를 상태 변수에 저장
           setUserData(response.data.result);

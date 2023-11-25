@@ -5,6 +5,20 @@
   transform: translateY(10%);
 }
 
+.modifylikepage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #eee;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
+
 .profileimg {
   margin-top: 100px;
   text-align: center;
@@ -14,7 +28,7 @@
   position: relative;
   display: block;
   margin: auto;
-  transform: translate(-600%, -1100%);
+  transform: translate(-600%, -2000%);
 }
 
 .Modifycontent {
@@ -57,7 +71,7 @@
   position: absolute;
   transform: translate(10%, -600%);
   color: #fff;
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -94,6 +108,7 @@
 }
 
 .menuBoard {
+  display:flex;
   padding-top: 4vw;
   padding-bottom: 4vw;
   height: 95vh;
@@ -113,6 +128,7 @@
   0% {
     width: 0px;
   }
+
   100% {
     width: 80vw;
   }
@@ -130,11 +146,11 @@
 
   border-radius: 15px;
 
-  box-shadow: 1px 1px 15px gray;
+  box-shadow: 0px 0px 10px rgb(155, 155, 155);
 
   margin-top: 3vh;
 
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 500;
 }
@@ -167,7 +183,7 @@
   width: 100%;
   background-color: rgb(240, 240, 240);
 
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 500;
 }
@@ -176,7 +192,7 @@
   animation: closeSubcategory 0.5s forwards;
 }
 
-.closed > input {
+.closed>input {
   display: none;
 }
 
@@ -216,14 +232,11 @@
   border-bottom-right-radius: 8px;
 }
 
-.opened {
-}
+.opened {}
 
-.closed {
-}
+.closed {}
 
 .flexText {
-  width: 100%;
   margin-left: 2vw;
 }
 
@@ -246,7 +259,7 @@
 
   width: 100%;
 
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -254,46 +267,72 @@
 
 input[type="checkbox"] {
   /* Double-sized Checkboxes */
-  -ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
+  -ms-transform: scale(1.5);
+  /* IE */
+  -moz-transform: scale(1.5);
+  /* FF */
+  -webkit-transform: scale(1.5);
+  /* Safari and Chrome */
+  -o-transform: scale(1.5);
+  /* Opera */
   transform: scale(1.5);
   padding: 10px;
 }
 
-.user-info {
+.userinfo {
   display: flex;
   margin-top: 2%;
   margin-bottom: 10%;
 }
 
-.user-img {
+.userimg {
   position: relative;
   left: 4vw;
 }
 
-.user-name,
-.user-dept {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 600;
 
-  position: relative;
-  left: 7vw;
-  top: 0.5vh;
+.username {
+  color: #69695d;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 14px;
+  /* 70% */
+  letter-spacing: 0.75px;
 }
 
-.user-dept {
-  font-size: 12px;
-  color: #868686;
+.userdep {
+  text-align: center;
+  color: #b5b5b5;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  /* 16px */
+  letter-spacing: -0.32px;
+  transform: translate(0%, -150%);
+}
+
+.userid {
+  text-align: center;
+  color: #b5b5b5;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  /* 16px */
+  letter-spacing: -0.32px;
+  transform: translate(0%, -310%);
 }
 
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  align-content: center;
   justify-content: center;
-
+  overflow: scroll;
+  z-index: 10;
 }

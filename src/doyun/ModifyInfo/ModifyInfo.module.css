@@ -54,7 +54,7 @@
 .username {
   color: #69695d;
   text-align: center;
-  font-family: Inter;
+  font-family: "Lato", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 14px; /* 70% */
@@ -64,7 +64,7 @@
 .userdep {
   text-align: center;
   color: #b5b5b5;
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -76,7 +76,7 @@
 .userid {
   text-align: center;
   color: #b5b5b5;
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -133,7 +133,7 @@
   position: absolute;
   transform: translate(10%, -600%);
   color: #fff;
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -197,7 +197,7 @@
   position: absolute;
   transform: translate(10%, -370%);
   color: #fff;
-  font-family: Lato;
+  font-family: "Lato", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;

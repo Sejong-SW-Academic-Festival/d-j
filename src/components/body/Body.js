@@ -84,12 +84,7 @@ function Body({
     setSchedules(categoryResult);
   };
 
-  const getSchedules = async () => {
-    const tempToken =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoYWlsY3J5cHRpY0BnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Ildvb2ppbiIsImV4cCI6MTcwMTQxNTE0MX0.8DeZiIwWj1kkdvtpdzpwa0OxubRSQxetr5MhGgoVWb8";
-    const scheduleResult = await axiosInstance.get("/user/get-all-schedules", {
-      headers: { Authorization: tempToken },
-    });
+  const getSchedules = async () => {const scheduleResult = await axiosInstance.get("/user/get-all-schedules");
     initSchedules(scheduleResult.data.result);
     console.log(scheduleResult.data.result);
   };

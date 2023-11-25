@@ -3,22 +3,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Unregister.module.css";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axiosInstance";
 
 function Unregister() {
     const [pw, setPw] = useState("");
     const [isPasswordValid, setIsPasswordValid] = useState(true);
     const [userData, setUserData] = useState({});
     const navigate = useNavigate();
-    
-    const axiosInstance = axios.create({
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("Authorization") || "",
-        },
-        baseURL: "http://3.35.183.26:8080",
-      });
 
     const handlePassword = (e) => {
         const newPassword = e.target.value;

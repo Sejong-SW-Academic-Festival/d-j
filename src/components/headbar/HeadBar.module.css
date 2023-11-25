@@ -4,6 +4,43 @@
   height: 12%;
 }
 
+
+.username {
+  color: #69695d;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 14px; /* 70% */
+  letter-spacing: 0.75px;
+}
+
+.userdep {
+  text-align: center;
+  color: #b5b5b5;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 16px */
+  letter-spacing: -0.32px;
+  transform: translate(0%, -150%);
+}
+
+.userid {
+  text-align: center;
+  color: #b5b5b5;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 16px */
+  letter-spacing: -0.32px;
+  transform: translate(0%, -310%);
+}
+
+
+
 /*사이드 버튼*/
 .sidebtn {
   color: #ea6b6b;
@@ -27,7 +64,7 @@
 
 /*연월정보 글자*/
 .monthYearText {
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 600;
 }

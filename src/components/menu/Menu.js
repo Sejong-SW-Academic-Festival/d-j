@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Menu.css";
-import axiosInstance from "../../axiosInstance";
 
 function Menu({
   setShowMenu,

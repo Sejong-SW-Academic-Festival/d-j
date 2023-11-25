@@ -13,7 +13,6 @@ import ScheduleIndication from "../scheduleIndication/ScheduleIndication";
 import ScheduleDetails from "../scheduleDetails/ScheduleDetails";
 import axiosInstance from "../../axiosInstance";
 import "./Body.css";
-import temp_data from "../temp_data/schedule_list.json";
 
 function Body({
   currentMonth,

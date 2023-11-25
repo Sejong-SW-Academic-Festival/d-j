@@ -14,8 +14,6 @@ import Mypage from "./doyun/MyPage/Mypage";
 import ModifyInfo from "./doyun/ModifyInfo/ModifyInfo";
 import Unregister from "./doyun/Unregister/Unregister";
 
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +26,6 @@ function App() {
           <Route path="/modifyInfo" element={<PrivateRoute children={<ModifyInfo />} />} />
           <Route path="/modifylike" element={<PrivateRoute children={<ModifyLike />} />} />
           <Route path="/unregister" element={<PrivateRoute children={<Unregister />} />} />
-          <Route path="/*" element={<Login />} /> 
         </Routes>
       </Suspense>
     </BrowserRouter>

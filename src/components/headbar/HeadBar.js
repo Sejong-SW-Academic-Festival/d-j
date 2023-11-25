@@ -1,5 +1,4 @@
 import styles from "./HeadBar.module.css";
-import axiosInstance from "../../axiosInstance";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 

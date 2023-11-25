@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { isAfter, isBefore, format, isSameDay } from "date-fns";
 import "./ScheduleDetails.css";
 import axiosInstance from "../../axiosInstance";

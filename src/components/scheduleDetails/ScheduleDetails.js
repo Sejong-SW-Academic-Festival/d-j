@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { isAfter, isBefore, format, isSameDay } from "date-fns";
 import "./ScheduleDetails.css";
 import axiosInstance from "../../axiosInstance";
@@ -22,11 +22,13 @@ function ScheduleDetails({
   const toggleHeartSchedules = async (isliked, scheduleName) => {
     if (isliked) {
       const unbookResult = await axiosInstance.put(
-        `/user/unbook-schedule/${scheduleName}`);
+        `/user/unbook-schedule/${scheduleName}`
+      );
       getSchedulesMothod();
     } else {
       const bookResult = await axiosInstance.put(
-        `/user/book-schedule/${scheduleName}`);
+        `/user/book-schedule/${scheduleName}`
+      );
       getSchedulesMothod();
     }
   };
@@ -40,7 +42,6 @@ function ScheduleDetails({
             <div
               className="detail-like"
               onClick={() => toggleHeartSchedules(e.liked, e.name)}
-
             >
               <svg
                 className={`heart-shape ${e.liked ? "filled" : "unfilled"}`}

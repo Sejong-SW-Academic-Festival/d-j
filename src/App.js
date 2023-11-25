@@ -14,6 +14,7 @@ import ModifyInfo from "./doyun/ModifyInfo/ModifyInfo";
 import Unregister from "./doyun/Unregister/Unregister";
 
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import ModifyLike from "./doyun/ModifyLike/ModifyLike";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/mypage" exact Component={Mypage} />
           <Route path="/login" exact Component={Login} />
           <Route path="/modifyInfo" exact Component={ModifyInfo} />
+          <Route path="/modifyLike" exact Component={ModifyLike} />
           <Route path="/unregister" exact Component={Unregister} />
         </Routes>
       </Suspense>

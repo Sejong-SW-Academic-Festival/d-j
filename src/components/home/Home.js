@@ -9,6 +9,7 @@ import axiosInstance from "../../axiosInstance";
 
 function Home() {
   //날짜
+  const [loading, setloading] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -104,16 +105,16 @@ function Home() {
     });
     addCategories(categoryResult.data.result);
     initUserInfo(userInfoResult.data.result);
+    setloading(false);
   };
 
   useEffect(() => {
     getMenuSources();
-  }, []); //[]안의 값이 바뀔때 실행 (빈 배열이면 처음 한번만)
+  }, []);
 
-  //2. 그리고 그 내용 그대로 body.js에도 보내주기
-
-  //3. menu.js에서 클릭 내용 받아올 수 있도록 만든다음 body의 useState에 업데이트
-
+  if(loading )
+  return (
+<div> </div>)
   return (
     <div className={styles.body}>
       {showMenu ? (

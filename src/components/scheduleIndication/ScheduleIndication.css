@@ -9,7 +9,7 @@
 
 .big_indication {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   color: #ffffff;
   width: 12.6vw;
   height: 2.5vh;
@@ -21,7 +21,10 @@
   height: 8px;
   border-radius: 100%;
 }
-
+.long .big_indication {
+  height: 2.1vh;
+  font-size: 10px;
+}
 .big_plus_cnt {
   font-size: 10px;
 }

@@ -54,7 +54,6 @@ function Menu({
       />
     </svg>
   );
-
   const unchecked_box = (
     <svg
       width="15"
@@ -99,8 +98,6 @@ function Menu({
   const onClickDownBarHandlar = (categoryHead) => {
     const prev = categoryDownBars;
     const findHead = prev.find((category) => category.name === categoryHead);
-    console.log(categoryHead, findHead);
-    console.log("prev:", prev);
     const result = prev.map((c) => {
       return c === findHead
         ? c.isActive
@@ -117,6 +114,7 @@ function Menu({
   };
 
   let maincategory_div_list = [];
+
   menuCategories.forEach((main_category) => {
     maincategory_div_list.push(
       <div className={`mainCategory`} key={main_category["name"]}>
@@ -129,7 +127,6 @@ function Menu({
             {checkIsActive(main_category["name"]) ? up_vector : down_vector}
           </div>
         }
-
         {checkIsActive(main_category["name"]) ? (
           <div className={`subCategoryContainer `}>
             {main_category["children"] != null ? (
@@ -202,7 +199,7 @@ function Menu({
       <div className="menuBackground">
         <div className="menuBoard" ref={wrapperRef}>
           {userInfo}
-          {maincategory_div_list}
+          { maincategory_div_list }
         </div>
       </div>
     </div>

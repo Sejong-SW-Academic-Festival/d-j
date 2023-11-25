@@ -13,6 +13,7 @@ import Signup from "./doyun/Signup/Signup";
 import Mypage from "./doyun/MyPage/Mypage";
 import ModifyInfo from "./doyun/ModifyInfo/ModifyInfo";
 import Unregister from "./doyun/Unregister/Unregister";
+import { redirect } from "react-router-dom";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/modifyInfo" element={<PrivateRoute children={<ModifyInfo />} />} />
           <Route path="/modifylike" element={<PrivateRoute children={<ModifyLike />} />} />
           <Route path="/unregister" element={<PrivateRoute children={<Unregister />} />} />
+          <Route path="/*" element={redirect("/")}/>
         </Routes>
       </Suspense>
     </BrowserRouter>
